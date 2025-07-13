@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%=pagetitle%>
+  </title>
+  <link rel="stylesheet" href="/home.css">
+</head>
+
+<body>
+  <!-- Navigation Links -->
+<%- include('../partials/nav')%>
+
+  <!-- Main Heading -->
+  <h1>Registered Homes</h1>
+
+  <!-- Card Container -->
+  <div class="card-container">
+    <% registeredhomes.forEach(home=> { %>
+      <div class="card">
+        <!-- Home Image -->
+        <img src="<%= home.imageurl %>" alt="<%= home.housename %>" class="card-image">
+        <div class="card-content">
+          <!-- Home Name -->
+          <h2 class="card-title">
+            <%= home.housename %>
+          </h2>
+          <!-- Price per Night -->
+          <p class="card-details">
+            <span class="card-price">₹<%= home.price %></span> per night
+          </p>
+          <!-- Rating -->
+          <p class="card-details">
+            Rating: <span class="card-rating">
+              <%= home.rating %>
+            </span>/5
+          </p>
+          
+            <a href="/host/edit-home/<%=home._id%>?editing=true"><button id="edit">Edit</button></a>
+
+           <form action="/host/delete-home/<%=home._id%>" method="post">
+            <button type="submit" id="dlt">Delete</button>
+           </form>
+            
+           
+            
+        </div>
+      
+      </div>
+      <% }) %>
+  </div>
+</body>
+
+</html>

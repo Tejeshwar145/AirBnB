@@ -1,0 +1,43 @@
+<%- include('../partials/header')%>
+  
+  </head>
+
+  <body>
+    <!-- Navigation Links -->
+    <%- include('../partials/nav')%>
+
+      <!-- Main Heading -->
+      <h1>Registered Homes</h1>
+
+      <!-- Card Container -->
+      <div class="card-container">
+        <% registeredhomes.forEach(home=> { %>
+          <div class="card">
+            <!-- Home Image -->
+            <img src="<%= home.imageurl %>" alt="<%= home.housename %>" class="card-image">
+            <div class="card-content">
+              <!-- Home Name -->
+              <h2 class="card-title">
+                <%= home.housename %>
+              </h2>
+              <!-- Price per Night -->
+              <p class="card-details">
+                <span class="card-price">₹<%= home.price %></span> per night
+              </p>
+              <!-- Rating -->
+              <p class="card-details">
+                Rating: <span class="card-rating">
+                  <%= home.rating %>
+                </span>/5
+              </p>
+              <a href="/home/<%= home._id %>">
+                <button class="details">details</button></a>
+              <%- include('../partials/favourites',{home:home})%>
+         
+            </div>
+          </div>
+          <% }) %>
+      </div>
+  </body>
+
+  </html>
